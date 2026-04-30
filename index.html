@@ -7,9 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rosa-kloe: #E999B7;
-            --rosa-claro: #fdf2f5;
-            --negro-soft: #1a1a1a;
+            /* Paleta de colores aplicada según la imagen */
+            --rosa-kloe: #671A21;      /* Vino principal */
+            --rosa-claro: #ECD9D2;     /* Nude claro */
+            --negro-soft: #000000;     /* Negro */
+            --prueba-menu: #57171E;    /* Vino oscuro */
+            --nude-medio: #E0C5BB;     /* Nude piel */
             --blanco: #ffffff;
             --sombra-suave: 0 8px 30px rgba(0,0,0,0.05);
             --transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -23,37 +26,34 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER SUTIL --- */
         header {
-            background-color: var(--negro-soft);
+            background-color: var(--prueba-menu);
             padding: 40px 20px;
             text-align: center;
-            clip-path: ellipse(150% 100% at 50% 0%); /* Curva sutil en el fondo */
+            clip-path: ellipse(150% 100% at 50% 0%);
         }
 
-        
         .logo-contenedor {
-        width: 150px; /* Ajustamos el tamaño para que se vea bien el logo */
-        height: 150px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* Efecto de resplandor rosa suave detrás de tu logo */
-        filter: drop-shadow(0 0 15px rgba(233, 153, 183, 0.6)); 
-        animation: floating 3s ease-in-out infinite;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 0 15px rgba(103, 26, 33, 0.4)); 
+            animation: floating 3s ease-in-out infinite;
         }
 
         .logo-imagen {
-        width: 100%; /* La imagen ocupará todo el contenedor */
-    height: auto;
-    border-radius: 50%; /* Como tu logo es circular, esto ayuda a que encaje perfecto */
-}
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
 
         .logo-texto {
             font-family: 'Dancing Script', cursive;
-            color: white;
-            font-size: 2.2rem;
+            color: var(--nude-medio);
+            font-size: 2.5rem;
             margin: 15px 0 0 0;
         }
 
@@ -62,7 +62,6 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* --- DASHBOARD NOVEDOSO --- */
         .dashboard {
             max-width: 900px;
             margin: -30px auto 40px;
@@ -91,17 +90,14 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transicion);
-            border: 1px solid transparent;
         }
 
         .btn-filtro:hover, .btn-filtro.activo {
             background: var(--rosa-kloe);
             color: white;
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(233, 153, 183, 0.3);
         }
 
-        /* --- GRID DE PRODUCTOS --- */
         .contenedor {
             max-width: 1100px;
             margin: 0 auto;
@@ -121,7 +117,7 @@
             text-align: center;
             box-shadow: var(--sombra-suave);
             transition: var(--transicion);
-            opacity: 0; /* Para la animación de entrada */
+            opacity: 0;
             transform: translateY(20px);
             border: 1px solid #f0f0f0;
         }
@@ -131,59 +127,52 @@
             transform: translateY(0);
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .img-placeholder {
-            width: 100%;
-            height: 200px;
-            background: var(--rosa-claro);
-            border-radius: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--rosa-kloe);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .card h3 {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            font-weight: 400;
-        }
-
-        .precio {
-            color: var(--negro-soft);
-            font-weight: 600;
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 15px;
-        }
+        .card:hover { transform: translateY(-10px); }
 
         .btn-comprar {
             background: var(--negro-soft);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 12px;
             width: 100%;
             cursor: pointer;
             transition: var(--transicion);
+            font-weight: 600;
         }
 
-        .btn-comprar:hover {
-            background: var(--rosa-kloe);
+        .btn-comprar:hover:not(:disabled) { background: var(--rosa-kloe); }
+
+        /* Estilos de los Tonos */
+        .contenedor-tonos {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px 0;
+            flex-wrap: wrap;
         }
-        /* Botón flotante del carrito */
+
+        .circulo-tono {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            transition: var(--transicion);
+        }
+
+        .circulo-tono.seleccionado {
+            border-color: var(--negro-soft);
+            transform: scale(1.2);
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+        }
+
         .carrito-flotante {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: var(--rosa-kloe);
+            background-color: var(--negro-soft);
             color: white;
             width: 60px;
             height: 60px;
@@ -194,26 +183,25 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             cursor: pointer;
             z-index: 1000;
-            transition: var(--transicion);
         }
 
         .contador-badge {
             position: absolute;
             top: 0;
             right: 0;
-            background: var(--negro-soft);
+            background: var(--rosa-kloe);
             padding: 5px 10px;
             border-radius: 50%;
             font-size: 0.8rem;
+            color: white;
         }
 
-        /* Panel del Carrito */
         .carrito-panel {
             position: fixed;
             top: 0;
-            right: -400px; /* Escondido por defecto */
+            right: -400px;
             width: 350px;
-            height: 100%;
+            height: 100vh;
             background: white;
             box-shadow: -5px 0 30px rgba(0,0,0,0.1);
             z-index: 2000;
@@ -221,11 +209,10 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
+            box-sizing: border-box;
         }
 
-        .carrito-panel.abierto {
-            right: 0;
-        }
+        .carrito-panel.abierto { right: 0; }
 
         .lista-carrito {
             flex-grow: 1;
@@ -233,17 +220,9 @@
             margin-top: 20px;
         }
 
-        .item-carrito {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
         .total-seccion {
             border-top: 2px solid var(--rosa-claro);
-            padding-top: 20px;
+            padding: 20px 0;
         }
 
         .btn-whatsapp {
@@ -255,17 +234,21 @@
             border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+        }
+
+        #modal-desc {
+            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
 
     <header>
-    <div class="logo-contenedor">
-        <img src="Kloe-logo.jpg" alt="Kloe Beauty Logo" class="logo-imagen">
-    </div>
-    <h1 class="logo-texto">Kloe Beauty</h1>
+        <div class="logo-contenedor"><img src="Kloe-logo.jpg" alt="Kloe Beauty Logo" class="logo-imagen"></div>
+        <h1 class="logo-texto">Kloe Beauty</h1>
     </header>
 
     <section class="dashboard">
@@ -274,108 +257,184 @@
             <button class="btn-filtro" onclick="filtrar('labiales')">Labiales</button>
             <button class="btn-filtro" onclick="filtrar('rostro')">Rostro</button>
             <button class="btn-filtro" onclick="filtrar('ojos')">Ojos</button>
-             <button class="btn-filtro" onclick="filtrar('cabello')">Cabello</button>
+            <button class="btn-filtro" onclick="filtrar('cabello')">Cabello</button>
         </div>
     </section>
 
     <main class="contenedor">
-        <div class="grid-productos" id="lista-productos">
-            </div>
+        <div class="grid-productos" id="lista-productos"></div>
     </main>
 
-    <script>
-    const formatoCOP = new Intl.NumberFormat('es-CO', {
-        style: 'currency',
-        currency: 'COP',
-        minimumFractionDigits: 0
-    });
-
-    const URL_GOOGLE_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwgcsxDAYDYMqWZ5qkl65R_Jpzg-FeKu8G-8HxegRO2wsaQqRSIzbJfS_iL_VDUGFumMyiA6SR2mAa/pub?output=csv";
-
-    let productos = [];
-
-    async function cargarProductos() {
-        try {
-            const respuesta = await fetch(URL_GOOGLE_SHEETS);
-            const datosCSV = await respuesta.text();
+    <div id="modal-detalle" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
+        <div style="background:white; width:100%; max-width:420px; border-radius:30px; padding:30px; position:relative; text-align:center; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+            <button onclick="cerrarModal()" style="position:absolute; top:20px; right:20px; border:none; background:#eee; width:35px; height:35px; border-radius:50%; font-size:1rem; cursor:pointer;">✕</button>
             
-            // Usamos una expresión regular para separar por comas de forma segura
-            const filas = datosCSV.split(/\r?\n/).slice(1);
+            <div style="width:100%; height:230px; display:flex; align-items:center; justify-content:center; background:var(--rosa-claro); border-radius:20px; margin-bottom:20px;">
+                <img id="modal-img" src="" style="max-width:95%; max-height:95%; object-fit:contain;">
+            </div>
+
+            <h2 id="modal-nombre" style="margin:0; font-size:1.4rem;"></h2>
+            <p id="modal-desc"></p>
             
-            productos = filas.map(fila => {
-                // Esta línea separa las columnas respetando si hay comas dentro de comillas
-                const columnas = fila.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-                
-                if (!columnas || columnas.length < 3) return null;
+            <div id="seccion-tonos">
+                <p style="font-weight:600; font-size:0.9rem; margin-bottom:5px;">Selecciona tu tono:</p>
+                <div class="contenedor-tonos" id="contenedor-tonos"></div>
+            </div>
 
-                return {
-                    id: parseInt(columnas[0].replace(/"/g, '')),
-                    nombre: columnas[1].replace(/"/g, '').trim(),
-                    precio: parseInt(columnas[2].replace(/"/g, '')),
-                    cat: columnas[3] ? columnas[3].replace(/"/g, '').trim().toLowerCase() : 'otros',
-                    // Limpiamos el enlace de la foto por si tiene comillas
-                    foto: columnas[4] ? columnas[4].replace(/"/g, '').trim() : ''
-                };
-            }).filter(p => p !== null);
+            <h3 id="modal-precio" style="color:var(--rosa-kloe); font-size:1.6rem; margin:10px 0 20px 0;"></h3>
+            <button class="btn-comprar" id="btn-modal-agregar">Añadir al Carrito</button>
+        </div>
+    </div>
 
-            console.log("Productos procesados:", productos);
-            renderizar(productos); 
-        } catch (error) {
-            console.error("Error cargando Excel:", error);
-        }
-    }
-
-    cargarProductos();
-</script>
-    <!-- Carrito flotante y panel fuera de cualquier <script> y antes de </body> -->
     <div class="carrito-flotante" onclick="toggleCarrito()">
         🛒 <span class="contador-badge" id="cart-count">0</span>
     </div>
 
     <div class="carrito-panel" id="cart-panel">
-        <button onclick="toggleCarrito()" style="border:none; background:none; cursor:pointer; font-size:1.5rem;">✕</button>
-        <h2>Tu Carrito</h2>
-        <div class="lista-carrito" id="cart-items">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin:0;">Tu Carrito</h2>
+            <button onclick="toggleCarrito()" style="border:none; background:none; cursor:pointer; font-size:1.5rem;">✕</button>
         </div>
+        <div class="lista-carrito" id="cart-items"></div>
         <div class="total-seccion">
-            <h3>Total: <span id="cart-total">$ 0</span></h3>
+            <h3 style="display:flex; justify-content:space-between;">Total: <span id="cart-total">$ 0</span></h3>
             <button class="btn-whatsapp" onclick="enviarWhatsApp()">Finalizar pedido por WhatsApp</button>
         </div>
     </div>
 
     <script>
+        const formatoCOP = new Intl.NumberFormat('es-CO', {
+            style: 'currency', currency: 'COP', minimumFractionDigits: 0
+        });
+
+        const URL_GOOGLE_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwgcsxDAYDYMqWZ5qkl65R_Jpzg-FeKu8G-8HxegRO2wsaQqRSIzbJfS_iL_VDUGFumMyiA6SR2mAa/pub?output=csv";
+        const numeroWhatsApp = "573176035545";
+        let productos = [];
         let carrito = [];
-        const numeroWhatsApp = "573204390327"; // ¡CAMBIA ESTO POR TU NÚMERO! (Código país + número)
+        let tonoSeleccionadoGlobal = "";
 
-        // Función para agregar al carrito
-        function agregarAlCarrito(id) {
-            const producto = productos.find(p => p.id === id);
-            carrito.push(producto);
-            actualizarInterfaz();
-            
+        async function cargarProductos() {
+            try {
+                const respuesta = await fetch(URL_GOOGLE_SHEETS);
+                const datosCSV = await respuesta.text();
+                const filas = datosCSV.split(/\r?\n/).slice(1);
+                
+                productos = filas.map(fila => {
+                    const columnas = fila.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    if (!columnas || columnas.length < 3) return null;
 
+                    const nombre = columnas[1]?.replace(/"/g, '').trim() || "Producto";
+                    const precio = columnas[2] ? parseInt(columnas[2].replace(/"/g, '').replace(/\D/g, '')) : 0;
+                    const cat = columnas[3]?.replace(/"/g, '').trim().toLowerCase() || 'otros';
+                    const foto = columnas[4]?.replace(/"/g, '').trim() || '';
+                    const esDisponible = columnas[5]?.replace(/"/g, '').trim().toLowerCase() !== 'agotado';
+                    const desc = columnas[6]?.replace(/"/g, '').trim() || "Calidad premium.";
+
+                    let tonos = [];
+                    for(let i = 7; i < columnas.length; i++) {
+                        let colorStr = columnas[i]?.replace(/"/g, '').trim();
+                        if (colorStr) {
+                            if (colorStr.includes('|')) {
+                                colorStr.split('|').forEach(c => tonos.push(c.trim()));
+                            } else {
+                                tonos.push(colorStr);
+                            }
+                        }
+                    }
+
+                    return { nombre, precio, cat, foto, disponible: esDisponible, desc, tonos };
+                }).filter(p => p !== null);
+
+                renderizar(productos);
+            } catch (error) { console.error("Error:", error); }
         }
 
-        function actualizarInterfaz() {
-            // Actualizar contador
-            document.getElementById('cart-count').innerText = carrito.length;
+        function renderizar(lista) {
+            const contenedor = document.getElementById('lista-productos');
+            contenedor.innerHTML = '';
+            lista.forEach((p, index) => {
+                const img = p.foto && p.foto.startsWith('http') ? p.foto : 'Kloe-logo.jpg';
+                contenedor.insertAdjacentHTML('beforeend', `
+                    <div class="card visible" style="transition-delay: ${index * 0.05}s">
+                        <div onclick="verDetalle('${p.nombre.replace(/'/g, "\\'")}')" style="cursor:pointer;">
+                            <img src="${img}" onerror="this.src='Kloe-logo.jpg'" style="width:100%; height:210px; object-fit:cover; border-radius:15px;">
+                            <h3 style="font-weight:400; font-size:1rem; margin:12px 0 5px;">${p.nombre}</h3>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                            <span style="font-weight:600;">${formatoCOP.format(p.precio)}</span>
+                            <button class="btn-comprar" onclick="verDetalle('${p.nombre.replace(/'/g, "\\'")}')" 
+                                style="width:auto; padding:8px 15px; font-size:0.8rem; ${p.disponible ? '' : 'background:#ccc;'}" ${p.disponible ? '' : 'disabled'}>
+                                ${p.disponible ? 'Ver Más' : 'Agotado'}
+                            </button>
+                        </div>
+                    </div>
+                `);
+            });
+        }
 
-            // Actualizar lista visual
+        function verDetalle(nombre) {
+            const p = productos.find(prod => prod.nombre === nombre);
+            if (!p) return;
+
+            document.getElementById('modal-img').src = p.foto || 'Kloe-logo.jpg';
+            document.getElementById('modal-nombre').innerText = p.nombre;
+            document.getElementById('modal-desc').innerText = p.desc;
+            document.getElementById('modal-precio').innerText = formatoCOP.format(p.precio);
+            
+            const contenedor = document.getElementById('contenedor-tonos');
+            contenedor.innerHTML = "";
+            
+            if (p.tonos && p.tonos.length > 0) {
+                document.getElementById('seccion-tonos').style.display = 'block';
+                tonoSeleccionadoGlobal = p.tonos[0];
+
+                p.tonos.forEach((tono, i) => {
+                    const div = document.createElement('div');
+                    div.className = `circulo-tono ${i === 0 ? 'seleccionado' : ''}`;
+                    div.style.backgroundColor = tono;
+                    div.title = tono;
+                    div.onclick = function() {
+                        document.querySelectorAll('.circulo-tono').forEach(c => c.classList.remove('seleccionado'));
+                        this.classList.add('seleccionado');
+                        tonoSeleccionadoGlobal = tono;
+                    };
+                    contenedor.appendChild(div);
+                });
+            } else {
+                document.getElementById('seccion-tonos').style.display = 'none';
+                tonoSeleccionadoGlobal = "Estándar";
+            }
+
+            document.getElementById('btn-modal-agregar').onclick = () => {
+                carrito.push({ ...p, tonoElegido: tonoSeleccionadoGlobal });
+                cerrarModal();
+                actualizarInterfaz();
+                toggleCarrito();
+            };
+
+            document.getElementById('modal-detalle').style.display = 'flex';
+        }
+
+        function cerrarModal() { document.getElementById('modal-detalle').style.display = 'none'; }
+
+        function actualizarInterfaz() {
+            document.getElementById('cart-count').innerText = carrito.length;
             const listaHTML = document.getElementById('cart-items');
             listaHTML.innerHTML = '';
             let total = 0;
-
             carrito.forEach((p, index) => {
                 total += p.precio;
                 listaHTML.innerHTML += `
-                    <div class="item-carrito">
-                        <span>${p.nombre}</span>
-                        <span>${formatoCOP.format(p.precio)}</span>
-                        <button onclick="eliminarDelCarrito(${index})" style="border:none; color:red; cursor:pointer;">🗑️</button>
+                    <div style="display:flex; align-items:center; gap:10px; padding:12px 0; border-bottom:1px solid #eee;">
+                        <div style="width:18px; height:18px; border-radius:50%; background:${p.tonoElegido === 'Estándar' ? 'var(--rosa-kloe)' : p.tonoElegido}; border:1px solid #ddd;"></div>
+                        <div style="flex-grow:1; text-align:left;">
+                            <div style="font-size:0.85rem; font-weight:600;">${p.nombre}</div>
+                            <div style="font-size:0.75rem; color:#888;">Tono: ${p.tonoElegido}</div>
+                        </div>
+                        <button onclick="eliminarDelCarrito(${index})" style="border:none; background:none; color:#ff4d4d; cursor:pointer; font-size:1.1rem;">✕</button>
                     </div>
                 `;
             });
-
             document.getElementById('cart-total').innerText = formatoCOP.format(total);
         }
 
@@ -384,88 +443,25 @@
             actualizarInterfaz();
         }
 
-        function toggleCarrito() {
-            document.getElementById('cart-panel').classList.toggle('abierto');
-        }
-
         function enviarWhatsApp() {
-            if (carrito.length === 0) return alert("El carrito está vacío");
-
-            let mensaje = "¡Hola Kloe Beauty! ✨ Quisiera hacer un pedido:\n\n";
-            let total = 0;
-            
-            carrito.forEach(p => {
-                mensaje += `- ${p.nombre} (${formatoCOP.format(p.precio)})\n`;
-                total += p.precio;
+            if (carrito.length === 0) return alert("¡Tu carrito está vacío!");
+            let mensaje = "✨ *NUEVO PEDIDO - KLOE BEAUTY* ✨\n\nHola, quiero pedir:\n";
+            carrito.forEach((p, i) => {
+                mensaje += `🛍️ *${i+1}.* ${p.nombre}\n   🎨 Tono: ${p.tonoElegido}\n   💰 ${formatoCOP.format(p.precio)}\n`;
             });
-
-            mensaje += `\n*Total: ${formatoCOP.format(total)}*`;
-            
-            // Codificar para URL
-            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
+            mensaje += `\n💵 *TOTAL: ${document.getElementById('cart-total').innerText}*`;
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
         }
 
-        // Modifica tu función de renderizar para que el botón llame a agregarAlCarrito
-        function renderizar(lista) {
-    const contenedor = document.getElementById('lista-productos');
-    contenedor.innerHTML = '';
+        function filtrar(categoria) {
+            document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+            event.target.classList.add('activo');
+            renderizar(categoria === 'todos' ? productos : productos.filter(p => p.cat === categoria));
+        }
 
-    lista.forEach((p, index) => {
-        // Si el producto no tiene foto, usamos una por defecto
-        const imagenUrl = p.foto && p.foto.includes('http') ? p.foto : 'Kloe-logo.jpg';
+        function toggleCarrito() { document.getElementById('cart-panel').classList.toggle('abierto'); }
 
-        const html = `
-            <div class="card" style="transition-delay: ${index * 0.1}s">
-                <div class="contenedor-img" style="width: 100%; height: 200px; overflow: hidden; border-radius: 15px; background: #fdf2f5;">
-                    <img src="${imagenUrl}" 
-                         onerror="this.src='Kloe-logo.jpg'" 
-                         loading="lazy" 
-                         style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <h3>${p.nombre}</h3>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-                    <span class="precio">${formatoCOP.format(p.precio)}</span>
-                    <button class="btn-comprar" onclick="agregarAlCarrito(${p.id})" style="width: auto; padding: 8px 12px; font-size: 0.8rem;">Añadir</button>
-                </div>
-            </div>
-        `;
-        contenedor.insertAdjacentHTML('beforeend', html);
-    });
-
-    setTimeout(() => {
-        document.querySelectorAll('.card').forEach(c => c.classList.add('visible'));
-    }, 100);
-
-}
-        
-
-        // Inicializar con todos los productos
-        renderizar(productos);
+        cargarProductos();
     </script>
-    <footer style="background-color: var(--negro-soft); color: white; padding: 40px 20px; text-align: center; margin-top: 50px;">
-    <div style="margin-bottom: 20px;">
-        <h2 style="font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--rosa-kloe);">Kloe Beauty</h2>
-        <p style="font-size: 0.9rem; opacity: 0.8;">Realzando tu belleza natural ✨</p>
-    </div>
-    
-    <div class="redes-sociales" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;">
-        <a href="https://www.instagram.com/kloebeauty_/" target="_blank" style="text-decoration: none; color: white; font-size: 1.5rem;">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 30px; filter: invert(1);">
-        </a>
-        
-        <a href="https://tiktok.com/@TU_USUARIO" target="_blank" style="text-decoration: none; color: white; font-size: 1.5rem;">
-            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" style="width: 30px; filter: invert(1);">
-        </a>
-
-        <a href="https://facebook.com/TU_PAGINA" target="_blank" style="text-decoration: none; color: white; font-size: 1.5rem;">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 30px; filter: invert(1);">
-        </a>
-    </div>
-
-    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.8rem; opacity: 0.6;">
-        &copy; 2026 Kloe Beauty - Todos los derechos reservados.
-    </div>
-</footer>
 </body>
 </html>
